@@ -1,0 +1,65 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{% trans 'menu.application title' %}</title>
+
+    <meta name="application-name" content="{% trans 'menu.application title' %}"/>
+    <link rel="SHORTCUT ICON" href="{% static 'albums/favicon.ico' %}" type="image/x-icon">
+    <link href="{% static 'albums/reportbro/ext/spectrum.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'albums/reportbro/reportbro.css' %}" rel="stylesheet" type="text/css"/>
+
+    <script src="{% static 'albums/reportbro/ext/jquery.js' %}"></script>
+    <script src="{% static 'albums/reportbro/ext/autosize.js' %}"></script>
+    <script src="{% static 'albums/reportbro/ext/JsBarcode.all.min.js' %}"></script>
+    <script src="{% static 'albums/reportbro/ext/spectrum.js' %}"></script>
+    <script src="{% static 'albums/reportbro/reportbro.js' %}"></script>
+    <script src="{% static 'albums/js/knockout-3.5.1.min.js' %}"></script>
+    <script src="{% static 'albums/js/jquery.cookie.js' %}"></script>
+
+    <link href="{% static 'albums/css/styles.css' %}" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript">
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            var csrftoken = $.cookie('csrftoken');
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+</script>
+
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                {% for menu_item in menu_items %}
+                    <a href="{{ menu_item.url }}" id="{{ menu_item.id }}" class="{{ menu_item.class }}">
+                        {{ menu_item.label }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </header>
+
+        <!-- Content Wrapper -->
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- /Content Wrapper -->
+    </div>
+<!-- container -->
+</body>
+</html>

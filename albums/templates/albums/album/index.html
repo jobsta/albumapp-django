@@ -1,0 +1,94 @@
+{% extends "../layout.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="sideMenu">
+    <a href="{% url 'albums:album_edit' %}">
+        <span>{% trans 'album.add' %}</span>
+        <span class="icon-plus"></span>
+    </a>
+    <a data-bind="attr: { href: '{% url 'albums:album_report' %}?year=' + year() }" target="_blank">
+        <span>{% trans 'album.pdf report' %}</span>
+        <span class="icon-download"></span>
+    </a>
+</div>
+
+<div class="mainContent">
+    <div class="listContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans 'album.name' %}</th>
+                    <th>{% trans 'album.artist' %}</th>
+                    <th style="width: 60px;">{% trans 'album.year' %}</th>
+                    <th style="width: 60px;">{% trans 'album.best_of_compilation' %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko foreach: albums -->
+                    <tr>
+                        <td>
+                            <a data-bind="text: name, attr: { href: '{% url 'albums:album_edit' %}' + id }"></a>
+                        </td>
+                        <td>
+                            <div data-bind="text: artist"></div>
+                        </td>
+                        <td>
+                            <div data-bind="text: year"></div>
+                        </td>
+                        <td>
+                            <div data-bind="visible: best_of_compilation" class="icon-check"></div>
+                        </td>
+                    </tr>
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <div class="filterContainer">
+        <input data-bind="textInput: year" id="album_year" placeholder="{% trans 'album.filter by year' %}"
+               type="number" maxlength="4">
+    </div>
+</div>
+
+<script type="text/javascript">
+
+function AlbumsViewModel() {
+    var self = this;
+    self.albums = ko.observableArray({{albums}});
+    self.year = ko.observable('');
+    self.year.subscribe(function(newVal) {
+        self.filterChanged();
+    });
+    self.request = null;
+
+    self.filterChanged = function() {
+        if (self.request !== null) {
+            self.request.abort();
+        }
+        self.request = $.ajax("{% url 'albums:album_data' %}?year=" + self.year(), {
+            type: "post", contentType: "application/json",
+            dataType: "json",
+            success: function(albums) {
+                self.albums(albums);
+                self.request = null;
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                if (textStatus !== 'abort') {
+                    alert('{% trans 'common.retrieving data failed' %}');
+                }
+                self.request = null;
+            }
+        });
+    };
+}
+
+var albumsViewModel = new AlbumsViewModel();
+
+$(document).ready(function() {
+    ko.applyBindings(albumsViewModel);
+});
+
+</script>
+{% endblock %}

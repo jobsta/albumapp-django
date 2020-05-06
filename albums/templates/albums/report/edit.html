@@ -1,0 +1,39 @@
+{% extends "../layout.html" %}
+
+{% block content %}
+<div id="reportbro"></div>
+
+<script type="text/javascript">
+
+var rb = null;
+
+function saveReport() {
+    var report = rb.getReport();
+
+    // console.log(JSON.stringify(report));
+    $.ajax("{% url 'albums:report_save' 'albums_report' %}", {
+        data: JSON.stringify(report),
+        type: "PUT", contentType: "application/json",
+        success: function(data) {
+            // report definition saved successfully,
+            // set modified flag to false to disable save button
+            rb.setModified(false);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert('saving report failed');
+        }
+    });
+}
+
+$(document).ready(function() {
+    rb = $('#reportbro').reportBro({
+        reportServerUrl: "{% url 'albums:report_run' %}",
+        saveCallback: saveReport
+    });
+    var report = {{report_definition}};
+    if (report) {
+        rb.load(report);
+    }
+});
+</script>
+{% endblock %}

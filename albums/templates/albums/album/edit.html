@@ -1,0 +1,83 @@
+{% extends "../layout.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="mainContent">
+    <div class="formContainer">
+        <div data-bind="with: album">
+            <div>
+                <input data-bind="value: name" id="album_name"
+                       placeholder="{% trans 'album.name' %}" type="text" maxlength="100">
+            </div>
+            <div>
+                <input data-bind="value: artist" id="album_artist"
+                      placeholder="{% trans 'album.artist' %}"  type="text" maxlength="100">
+            </div>
+            <div>
+                    <input data-bind="value: year" id="album_year" type="number"
+                           placeholder="{% trans 'album.year' %}" maxlength="4">
+            </div>
+            <div>
+                <input data-bind="checked: best_of_compilation" id="album_best_of_compilation" type="checkbox">
+                <label for="album_best_of_compilation">{% trans 'album.best_of_compilation' %}</label>
+            </div>
+        </div>
+        <div style="text-align: center">
+            <a href="{% url 'albums:album_index' %}">{% trans 'common.cancel' %}</a>
+            <button data-bind="click: save">{% trans 'common.save' %}</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+function Album(data) {
+    var self = this;
+    self.id = data.id;
+    self.name = ko.observable(data.name);
+    self.artist = ko.observable(data.artist);
+    self.year = ko.observable(data.year);
+    self.best_of_compilation = ko.observable(data.best_of_compilation);
+}
+
+function AlbumViewModel() {
+    var self = this;
+
+    self.album = new Album({{album}});
+
+    self.save = function() {
+        $('input').removeClass('error');  // remove possible errors from previous validation
+
+        $.ajax("{% url 'albums:album_save' %}", {
+            data: ko.toJSON({
+                album: self.album
+            }),
+            type: "post", contentType: "application/json",
+            dataType: "json",
+            success: function(obj) {
+                if (obj.errors.length === 0) {
+                    window.location = "{% url 'albums:album_index' %}";
+                } else {
+                    // highlight input fields with validation error
+                    for (var i=0; i < obj.errors.length; i++) {
+                        $('#album_' + obj.errors[i].field).addClass('error');
+                    }
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('{% trans 'common.saving failed' %}');
+            }
+        });
+    };
+}
+
+var albumViewModel = new AlbumViewModel();
+
+$(document).ready(function() {
+    ko.applyBindings(albumViewModel);
+});
+
+</script>
+{% endblock %}

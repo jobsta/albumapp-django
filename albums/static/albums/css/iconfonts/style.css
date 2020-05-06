@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'demoapp';
+  src:
+    url('fonts/demoapp.woff2?8swgq1') format('woff2'),
+    url('fonts/demoapp.ttf?8swgq1') format('truetype'),
+    url('fonts/demoapp.woff?8swgq1') format('woff'),
+    url('fonts/demoapp.svg?8swgq1#demoapp') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'demoapp' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-check:before {
+  content: "\e900";
+}
+.icon-download:before {
+  content: "\e901";
+}
+.icon-plus:before {
+  content: "\e902";
+}

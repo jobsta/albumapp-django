@@ -1,0 +1,67 @@
+#: album_views.py:102 album_views.py:106
+msgid "error.the field must not be empty"
+msgstr "The field must not be empty"
+
+#: album_views.py:113
+msgid "error.the field must contain a valid year"
+msgstr "The field must contain a valid year"
+
+#: album_views.py:115
+msgid "error.the field must contain a number"
+msgstr "The field must contain a number"
+
+#: templates/albums/album/edit.html:12 templates/albums/album/index.html:23
+msgid "album.name"
+msgstr "Album name"
+
+#: templates/albums/album/edit.html:16 templates/albums/album/index.html:24
+msgid "album.artist"
+msgstr "Artist"
+
+#: templates/albums/album/edit.html:20 templates/albums/album/index.html:25
+msgid "album.year"
+msgstr "Year"
+
+#: templates/albums/album/edit.html:24 templates/albums/album/index.html:26
+msgid "album.best_of_compilation"
+msgstr "Best-Of"
+
+#: templates/albums/album/edit.html:28
+msgid "common.cancel"
+msgstr "cancel"
+
+#: templates/albums/album/edit.html:29
+msgid "common.save"
+msgstr "save"
+
+#: templates/albums/album/edit.html:70
+msgid "common.saving failed"
+msgstr "Saving data failed"
+
+#: templates/albums/album/index.html:10
+msgid "album.add"
+msgstr "add album"
+
+#: templates/albums/album/index.html:14
+msgid "album.pdf report"
+msgstr "download"
+
+#: templates/albums/album/index.html:48
+msgid "album.filter by year"
+msgstr "Filter by year"
+
+#: templates/albums/album/index.html:76
+msgid "common.retrieving data failed"
+msgstr "Retrieving data failed"
+
+#: templates/albums/layout.html:8 templates/albums/layout.html:10
+msgid "menu.application title"
+msgstr "ReportBro Demo Application"
+
+#: templates/albums/layout.html:50
+msgid "menu.albums"
+msgstr "Albums"
+
+#: templates/albums/layout.html:51
+msgid "menu.report"
+msgstr "Report"

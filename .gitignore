@@ -1,0 +1,33 @@
+.DS_Store
+.env
+*.pyc
+*.pyo
+__pycache__/
+instance/
+.cache/
+.pytest_cache/
+env/
+env*
+dist/
+build/
+*.egg
+*.egg-info/
+_mailinglist
+.tox/
+.idea/
+docs/_build/
+*.bak
+
+# db and migration scripts
+albumapp.sqlite
+albums/migrations/
+
+# Translations
+*.mo
+*.pot
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+*,cover

@@ -1,0 +1,223 @@
+@import url('iconfonts/style.css');
+
+html, body {
+    font-family: 'Open Sans', Helvetica,Arial,sans-serif;
+	text-rendering: optimizelegibility;
+	font-weight: 200;
+	color: #ffffff;
+	margin: 0;
+	padding: 0;
+    height: 100%;
+    background-color: #3baae3;
+    font-size: 16px;
+}
+
+header {background-color: #ffffff;}
+
+nav { padding: 10px; }
+
+nav a {
+    text-transform: uppercase;
+    color: #777777;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+nav a:hover, nav a.activeMenuItem {
+    color: #3baae3;
+    text-decoration: none;
+}
+
+table {
+    width: calc(100% - 20px);
+    min-width: 300px;
+    border-collapse: collapse;
+}
+
+table th {
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid #ffffff;
+}
+
+table td:last-child { text-align: center; }
+
+#content #reportbro { min-height: 920px; }
+
+.mainContent {
+    padding: 20px 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+    min-width: 400px;
+    max-width: 1680px;
+}
+
+.listContainer {
+    width: 70%;
+    min-width: 300px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-x: auto;
+}
+
+.filterContainer {
+    width: 120px;
+}
+
+.formContainer {
+    width: 100%;
+    min-width: 300px;
+    max-width: 600px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.formContainer div {
+    min-height: 40px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input {
+    font-size: 16px;
+    font-weight: inherit;
+    width: 100%;
+    color: #444444;
+    border: 1px solid #ffffff;
+    height: 32px;
+    padding: 4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border: 1px solid #004864;
+}
+
+input.error, input:invalid {
+    border: 2px solid #ff0000;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input[type="checkbox"] {
+    width: 0;
+    height: 0;
+    display: none;
+    opacity: 0;
+}
+
+label { cursor: pointer; }
+
+input[type="checkbox"] + label:before {
+    width: 13px;
+    height: 13px;
+    border: 2px solid #ffffff;
+    display: inline-block;
+    vertical-align: text-bottom;
+    margin-right: 2px;
+    color: #ffffff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+input[type="checkbox"] + label:before {
+    font-family: "demoapp";
+    font-size: 13px;
+    padding: 2px;
+    content: "";
+    color: #FFF;
+}
+
+input[type="checkbox"]:checked + label:before {
+    content: "\e900";
+    background-color: #57cb85;
+    border-color: #57cb85;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.2);
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 15px;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    display: inline-block;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #57cb85;
+}
+
+.sideMenu {
+    position: fixed;
+    top: 120px;
+    left: 0;
+}
+
+.sideMenu a {
+    position: relative;
+    text-decoration: none;
+    width: 150px;
+    left: -110px;
+    background-color: #57cb85;
+    padding: 8px;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    display: block;
+    margin-bottom: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.sideMenu [class^="icon-"] {
+	font-size: 24px;
+}
+
+.sideMenu a > span { padding-left: 10px; }
+
+.sideMenu a:hover { left: 0; }
