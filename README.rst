@@ -9,32 +9,37 @@ The application is a simple web app and allows to manage a list of music albums.
 ReportBro Designer is included so you can modify a template which is used
 when you print a pdf of all your albums.
 
+The Demo App is also avaiable for the `Flask <https://palletsprojects.com/p/flask/>`_
+and `web2py <http://web2py.com/>`_ web frameworks. See
+`Album App for Flask <https://github.com/jobsta/albumapp-flask.git>`_ and
+`Album App for web2py <https://github.com/jobsta/albumapp-web2py.git>`_ respectively.
+
 All Instructions in this file are for a Linux/Mac shell but the commands should
 be easy to adapt for Windows.
 
 Installation
 ------------
 
-Clone git repository and change into repository dir:
+Clone the git repository and change into the created directory:
 
 .. code:: shell
 
     $ git clone https://github.com/jobsta/albumapp-django.git
     $ cd albumapp-django
 
-Create virtual environment:
+Create a virtual environment called env:
 
 .. code:: shell
 
     $ python3 -m venv env
 
-Activate virtual environment:
+Activate the virtual environment:
 
 .. code:: shell
 
     $ . env/bin/activate
 
-Install dependencies:
+Install all required dependencies:
 
 .. code:: shell
 
@@ -43,20 +48,20 @@ Install dependencies:
 Configuration
 -------------
 
-- Activate virtual environment (if not already active):
+- Activate the virtual environment (if not already active):
 
 .. code:: shell
 
     $ . env/bin/activate
 
-- Create database (albumapp.sqlite) by creating migration scripts and executing them:
+- Create a database (albumapp.sqlite) by creating migration scripts and executing them:
 
 .. code:: shell
 
     $ python manage.py makemigrations albums
     $ python manage.py migrate
 
-- Compile translation files so labels can be used in the application (generates django.mo next to django.po):
+- Compile all translation files so the labels can be used in the application (generates django.mo next to django.po):
 
 .. code:: shell
 
@@ -65,13 +70,13 @@ Configuration
 Run App
 -------
 
-Activate virtual environment (if not already active):
+Activate the virtual environment (if not already active):
 
 .. code:: shell
 
     $ . env/bin/activate
 
-Start Django webserver:
+Start the Django webserver:
 
 .. code:: shell
 
@@ -83,7 +88,7 @@ http://127.0.0.1:8000/albums/
 IDE Configuration (PyCharm)
 ---------------------------
 
-1. Open albumapp-django repo directory
+1. Open the cloned albumapp-django directory
 
 2. Add virtual env to project:
 
@@ -94,12 +99,12 @@ IDE Configuration (PyCharm)
 Database
 --------
 
-An sqlite database is used to store application data (albums), report templates
-and report previews used by ReportBro Designer.
+sqlite is used as database to store the application data (albums),
+report templates and report previews used by ReportBro Designer.
 
-To initially create the db with its tables:
+To initially create the db with its tables the following steps are necessary:
 
-Activate virtual environment (if not already active):
+Activate the virtual environment (if not already active):
 
 .. code:: shell
 
@@ -133,7 +138,7 @@ all strings marked for translation. It creates (or updates) the django.po messag
 
     $ python manage.py makemessages
 
-Compile translation files so labels can be used in the
+Compile all translation files so labels can be used in the
 application (generates django.mo next to django.po):
 
 .. code:: shell
