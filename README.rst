@@ -162,3 +162,53 @@ Python Coding Style
 The `PEP 8 (Python Enhancement Proposal) <https://www.python.org/dev/peps/pep-0008/>`_
 standard is used which is the de-facto code style guide for Python. An easy-to-read version
 of PEP 8 can be found at https://pep8.org/
+
+Install on PythonAnywhere
+-------------------------
+
+Basically follow the instructions at https://help.pythonanywhere.com/pages/DeployExistingDjangoProject
+
+Upload code to PythonAnywhere:
+
+.. code:: shell
+
+    $ git clone https://github.com/jobsta/albumapp-django.git
+
+In *django_demoapp/settings.py* you have to enter your url in *ALLOWED_HOSTS*, e.g.
+
+.. code:: python
+
+    ALLOWED_HOSTS = ['myuser.pythonanywhere.com']
+
+and set `STATIC_ROOT` accordingly:
+
+.. code:: python
+
+    STATIC_ROOT = '/home/myuser/albumapp-django/albums/static'
+
+On the PythonAnywhere 'Web' Page you have to make sure everything is configured as described
+(Source code and working dir, wsgi file, virtualenv). The wsgi file looks something like this:
+
+
+.. code:: python
+
+    import os
+    import sys
+
+    path = '/home/myuser/albumapp-django'
+    if path not in sys.path:
+        sys.path.append(path)
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'django_demoapp.settings'
+    from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()
+
+For 'Static files' you enter the following mapping:
+
+URL: /static/
+
+Directory: /home/myuser/albumapp-django/albums/static
+
+Don't forget to perform the necessary installation steps for the django albumapp itself,
+i.e. DB migrations and compile translation messages (see above).
+
+Reload the application and run!
