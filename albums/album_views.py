@@ -3,7 +3,7 @@ import io
 import json
 
 from django.forms.models import model_to_dict
-from django.http import FileResponse, HttpResponseBadRequest, HttpResponseServerError, JsonResponse
+from django.http import HttpResponseBadRequest, HttpResponseServerError, HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.utils.safestring import SafeString
 from django.utils.translation import gettext as _
@@ -90,7 +90,9 @@ def report(request):
             raise ReportBroError(report_inst.errors[0])
 
         pdf_report = report_inst.generate_pdf()
-        return FileResponse(io.BytesIO(pdf_report), as_attachment=False, filename='albums.pdf')
+        response = HttpResponse(pdf_report, content_type='application/pdf')
+        response['Content-Disposition'] = 'inline; filename="{filename}"'.format(filename='albums.pdf')
+        return response
     except ReportBroError as ex:
         return HttpResponseServerError('report error: ' + str(ex.error))
     except Exception as ex:
