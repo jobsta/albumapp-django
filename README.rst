@@ -14,8 +14,11 @@ and `web2py <http://web2py.com/>`_ web frameworks. See
 `Album App for Flask <https://github.com/jobsta/albumapp-flask.git>`_ and
 `Album App for web2py <https://github.com/jobsta/albumapp-web2py.git>`_ respectively.
 
-All Instructions in this file are for a Linux/Mac shell but the commands should
-be easy to adapt for Windows.
+All Instructions in this file are for a Linux/Mac shell but the commands are
+easy to adapt for Windows. If a command is different for Windows then
+it will be shown below. Commands which can be done in
+Windows Explorer (e.g. copy file, create directory) are not explicitly listed
+for Windows.
 
 Installation
 ------------
@@ -38,6 +41,14 @@ Activate the virtual environment:
 .. code:: shell
 
     $ . env/bin/activate
+
+On Windows the virtual environment is activated this way instead:
+
+.. code:: shell
+
+    $ env\Scripts\activate
+
+Once the virtual environment is activated you should see the environment name prepended to the shell prompt.
 
 Install all required dependencies:
 
