@@ -51,8 +51,8 @@ def run(request):
     response = HttpResponse('')
     response['Access-Control-Allow-Origin'] = '*'
     response['Access-Control-Allow-Methods'] = 'GET, PUT, OPTIONS'
-    response[
-        'Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Z-Key'
+    response['Access-Control-Allow-Headers'] =\
+        'Origin, X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Authorization, Z-Key'
     if request.method == 'OPTIONS':
         # options request is usually sent by browser for a cross-site request, we only need to set the
         # Access-Control-Allow headers in the response so the browser sends the following get/put request
