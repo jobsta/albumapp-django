@@ -5,10 +5,8 @@
 
 <script type="text/javascript">
 
-var rb = null;
-
 function saveReport() {
-    var report = rb.getReport();
+    const report = rb.getReport();
 
     // console.log(JSON.stringify(report));
     $.ajax("{% url 'albums:report_save' 'albums_report' %}", {
@@ -25,15 +23,14 @@ function saveReport() {
     });
 }
 
-$(document).ready(function() {
-    rb = $('#reportbro').reportBro({
-        reportServerUrl: "{% url 'albums:report_run' %}",
-        saveCallback: saveReport
-    });
-    var report = {{report_definition}};
-    if (report) {
-        rb.load(report);
-    }
+const report = {{ report_definition }};
+const rb = new ReportBro(document.getElementById('reportbro'), {
+    reportServerUrl: "{% url 'albums:report_run' %}",
+    saveCallback: saveReport,
 });
+if (report) {
+    rb.load(report);
+}
+
 </script>
 {% endblock %}
