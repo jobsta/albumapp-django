@@ -38,6 +38,10 @@ table {
     border-collapse: collapse;
 }
 
+table a {
+    color: #ffffff;
+}
+
 table th {
     text-align: left;
     font-weight: normal;
@@ -157,17 +161,21 @@ input[type="checkbox"]:checked + label:before {
     border-color: #57cb85;
 }
 
-a {
+.buttonPane {
+    text-align: center;
+}
+
+.buttonPane a {
     color: #ffffff;
     text-decoration: underline;
     cursor: pointer;
 }
 
-a:hover {
+.buttonPane a:hover {
     text-decoration: none;
 }
 
-button {
+.buttonPane button {
     cursor: pointer;
     color: #ffffff;
     background-color: rgba(255,255,255,0.2);
@@ -201,6 +209,7 @@ button:hover {
     text-decoration: none;
     width: 150px;
     left: -110px;
+    color: #ffffff;
     background-color: #57cb85;
     padding: 8px;
     -webkit-transition: all 0.5s linear;
