@@ -7,7 +7,7 @@ from django.http import HttpResponseBadRequest, HttpResponse, Http404
 from django.shortcuts import render
 from django.utils.safestring import SafeString
 from django.views.decorators.clickjacking import xframe_options_exempt
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from reportbro import Report, ReportBroError
 from timeit import default_timer as timer
 
@@ -39,6 +39,7 @@ def edit(request):
 
 
 @xframe_options_exempt
+@csrf_exempt
 def run(request):
     """Generates a report for preview.
 
@@ -132,7 +133,8 @@ def run(request):
             try:
                 report_request = ReportRequest.objects.get(key=key)
             except ReportRequest.DoesNotExist:
-                return HttpResponseBadRequest('report not found (preview probably too old), update report preview and try again')
+                return HttpResponseBadRequest(
+                    'report not found (preview probably too old), update report preview and try again')
             if output_format == 'pdf' and report_request.pdf_file:
                 report_file = report_request.pdf_file
             else:
