@@ -89,7 +89,7 @@ def report(request):
             raise ReportBroError(report_inst.errors[0])
 
         pdf_report = report_inst.generate_pdf()
-        response = HttpResponse(pdf_report, content_type='application/pdf')
+        response = HttpResponse(bytes(pdf_report), content_type='application/pdf')
         response['Content-Disposition'] = 'inline; filename="{filename}"'.format(filename='albums.pdf')
         return response
     except ReportBroError as ex:
