@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "albumapp-django"
+version = "1.0.0"
+description = "ReportBro Album Demo-App for Django"
+authors = ["Jobsta <contact@jobsta.at>"]
+license = "MIT"
+readme = "README.rst"
+
+homepage = "https://www.reportbro.com"
+repository = "https://github.com/jobsta/albumapp-django"
+documentation = "https://github.com/jobsta/albumapp-django"
+
+classifiers = [
+	"Development Status :: 5 - Production/Stable",
+	"Environment :: Web Environment",
+	"Framework :: Flask",
+	"Intended Audience :: Developers",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3.8",
+	"Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+	"Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/jobsta/albumapp-django/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^4.2.2"
+reportbro-lib = "^3.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

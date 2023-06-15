@@ -30,68 +30,47 @@ Clone the git repository and change into the created directory:
     $ git clone https://github.com/jobsta/albumapp-django.git
     $ cd albumapp-django
 
-Create a virtual environment called env:
+
+This app requires poetry (version 1.2.2 or newer) to be installed and working. See https://python-poetry.org/docs/#installation
+for installation details.
+
+Install all dependencies:
+
+.. code:: shell
+    $ poetry install
+
+To enter the virtual environment:
 
 .. code:: shell
 
-    $ python3 -m venv env
+    $ poetry shell
 
-Activate the virtual environment:
-
-.. code:: shell
-
-    $ . env/bin/activate
-
-On Windows the virtual environment is activated this way instead:
-
-.. code:: shell
-
-    $ env\Scripts\activate
-
-Once the virtual environment is activated you should see the environment name prepended to the shell prompt.
-
-Install all required dependencies:
-
-.. code:: shell
-
-    $ pip install django reportbro-lib
+If you have activated/entered the virtual environment created by poetry you can omit the `poetry run` in the following commands.
 
 Configuration
 -------------
-
-- Activate the virtual environment (if not already active):
-
-.. code:: shell
-
-    $ . env/bin/activate
 
 - Create a database (albumapp.sqlite) by creating migration scripts and executing them:
 
 .. code:: shell
 
-    $ python manage.py makemigrations albums
-    $ python manage.py migrate
+    $ poetry run python manage.py makemigrations albums
+    $ poetry run python manage.py migrate
 
 - Compile all translation files so the labels can be used in the application (generates django.mo next to django.po):
 
 .. code:: shell
 
-    $ python manage.py compilemessages
+    $ poetry run python manage.py compilemessages
 
 Run App
 -------
-
-Activate the virtual environment (if not already active):
-
-.. code:: shell
-
-    $ . env/bin/activate
 
 Start the Django webserver:
 
 .. code:: shell
 
-    $ python manage.py runserver
+    $ poetry run python manage.py runserver
 
 Now your application is running and can be accessed here:
 http://127.0.0.1:8000/albums/
@@ -105,7 +84,8 @@ IDE Configuration (PyCharm)
 
 - Select File -> Settings
 - Project: albumapp-django -> Project interpreter
-- click Settings-Icon and select "Add Local" option, select the recently created virtual env
+- click Settings-Icon and select "Add Local" option
+- Choose "Poetry Environment" and select "Existing Environment"
 
 Database
 --------
@@ -115,46 +95,34 @@ report templates and report previews used by ReportBro Designer.
 
 To initially create the db with its tables the following steps are necessary:
 
-Activate the virtual environment (if not already active):
-
-.. code:: shell
-
-    $ . env/bin/activate
-
 Create database migrations:
 
 .. code:: shell
 
-    $ python manage.py makemigrations albums
+    $ poetry run python manage.py makemigrations albums
 
 Execute migration scripts:
 
 .. code:: shell
 
-    $ python manage.py migrate
+    $ poetry run python manage.py migrate
 
 Translations
 ------------
-
-Activate virtual environment (if not already active):
-
-.. code:: shell
-
-    $ . env/bin/activate
 
 Run over the entire source tree of the current directory and pull out
 all strings marked for translation. It creates (or updates) the django.po message file:
 
 .. code:: shell
 
-    $ python manage.py makemessages
+    $ poetry run python manage.py makemessages
 
 Compile all translation files so labels can be used in the
 application (generates django.mo next to django.po):
 
 .. code:: shell
 
-    $ python manage.py compilemessages --ignore env
+    $ poetry run python manage.py compilemessages --ignore env
 
 Python Coding Style
 -------------------
@@ -187,8 +155,17 @@ and set `STATIC_ROOT` accordingly:
     STATIC_ROOT = '/home/myuser/albumapp-django/albums/static'
 
 On the PythonAnywhere 'Web' Page you have to make sure everything is configured as described
-(Source code and working dir, wsgi file, virtualenv). The wsgi file looks something like this:
+(Source code and working dir, wsgi file, virtualenv).
 
+Note: to install the same versions used with poetry in you virtualenv you can generate a
+a `requirements.txt` with the following command:
+
+.. code:: shell
+
+    $ poetry export -o requirements.txt
+
+
+The wsgi file looks something like this:
 
 .. code:: python
 
